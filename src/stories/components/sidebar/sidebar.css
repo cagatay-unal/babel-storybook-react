@@ -1,0 +1,113 @@
+:root{
+    --sidebar-tab-width: 260px;
+}
+body{
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.svg-inline--fa{
+    font-size: 22px;
+}
+
+button{
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+}
+
+.sidebar-wrapper{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-tab-width);
+    height: 100vh;
+    background: #232323;
+    border-radius: 8px;
+    transition: width 0.4s;
+}
+
+.sidebar-inner{
+    padding:  0 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sidebar-header-wrapper{
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 72px;
+    border-bottom: 1px solid rgb(225 225 225 / 10%);
+    margin-bottom: 16px;
+}
+
+.sidebar-header-wrapper button{
+    flex: 1 1 auto;
+    display: grid;
+    place-items: center;
+    color: white;
+    opacity: 0.5;
+}
+.sidebar-header-wrapper button.active{
+    opacity: 1;
+}
+
+.sidebar-header-wrapper .underline{
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 33.33%;
+    height: 4px;
+    border-radius: 2px;
+    background: #67fb99;
+    transition: 0.3s;
+}
+
+.sidebar-wrapper button{
+    position: relative;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    padding: 0 25px;
+    color: #f9f9f9;
+}
+
+.sidebar-tabs{
+    flex: 1 1 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar-tabs > div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    opacity: 0;
+    width: 100%;
+    visibility: hidden;
+    translate: 0 20px;
+    transition: 0.3s;
+    color: #f9f9f9;
+}
+
+.sidebar-tabs > div.active{
+    opacity: 1;
+    visibility: visible;
+    translate: 0;
+}
+
+.sidebar-tabs > div > div {
+    display: grid;
+    width: 100%;
+}
