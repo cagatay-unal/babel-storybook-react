@@ -16,24 +16,27 @@ body{
 .dropdown button{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
     padding: 0 16px;
     margin: 0;
+    width: 200px;
+    min-width: 200px;
     height: 64px;
     border-radius: 6px;
     color: #f9f9f9;
-    background-color: #211d26;
+    background-color: #232323;
     border: 0;
     cursor: pointer;
     font-size: 18px;
 }
 
 .dropdown button:hover{
-    background-color: #2d2834;
+    background-color: #6f28de;
 }
 
 .dropdown.active > button{
-    background-color: #712ae0;
+    background-color: #6f28de;
 }
 
 .dropdown .menu {
@@ -52,6 +55,7 @@ body{
   }
   
   .dropdown .menu button {
+    justify-content: flex-start;
     height: 56px;
     width: 100%;
     border-radius: 0;
@@ -61,4 +65,8 @@ body{
     opacity: 1;
     visibility: visible;
     translate: 0;
+  }
+
+  .dropdown.active > button{
+    border-radius: 6px 6px 0 0;
   }
