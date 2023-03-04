@@ -1,29 +1,27 @@
-import { FC, Fragment, ReactNode, useState } from "react";
+import { FC, ReactNode, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faGear } from "@fortawesome/free-solid-svg-icons";
+
+import { faMap, faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 import './sidebar.css';
 
-/**
- * TODO: Fixed - Dynamic generate fontawesome icon from list (with Typescript)
-**/
-
 const tabList = [
-    { name: 'home', icon:'fa-house' },
-    { name: 'user', icon:'fa-user' },
-    { name: 'settings', icon:'fa-gear' }
+    { name: 'map', icon: faMap },
+    { name: 'message', icon: faEnvelope },
+    { name: 'user', icon: faUser }
 ];
 
 const menuList = [
-    { name: 'sub-menu-item-1', icon:'fa-rocket' },
-    { name: 'sub-menu-item-2', icon:'fa-rocket' },
-    { name: 'sub-menu-item-3', icon:'rocket' }
+    { name: 'sub-menu-item-1' },
+    { name: 'sub-menu-item-2' },
+    { name: 'sub-menu-item-3' }
 ];
 
 type HeaderProps = {
-    // 0 = home
-    // 1 = user
-    // 2 = settings
+    // 0 = map
+    // 1 = message
+    // 2 = user
     activeTab: number;
     onTabClicked: (tab: number) => void;
 };
@@ -33,7 +31,7 @@ const NavHeader: FC<HeaderProps> = ({ activeTab, onTabClicked }) => (
         {tabList.map((tab, index) => (
             <button type='button' className={`${activeTab === index ? 'active' : ''}`} key={tab.name} onClick={ () => onTabClicked(index) }>
                 <span>
-                    <FontAwesomeIcon icon={faHouse} />
+                    <FontAwesomeIcon icon={tab.icon} />
                 </span>
             </button>
         ))}
@@ -43,12 +41,13 @@ const NavHeader: FC<HeaderProps> = ({ activeTab, onTabClicked }) => (
 
 type ButtonProps = {
     name: string;
-    icon: string;
 };
 
-const NavButton: FC<ButtonProps> = ({ name, icon }) => (
+const NavButton: FC<ButtonProps> = ({ name }) => (
     <button type="button">
-        <span><FontAwesomeIcon icon={faGear} /></span>
+        <span>
+            <FontAwesomeIcon icon={faAngleRight} />
+        </span>
         <span>{ name }</span>
     </button>
 );
@@ -78,7 +77,7 @@ export const Sidebar = () => {
                     <Tab isActive={activeTab === 0}>
                         <div>
                             {menuList.map((menuItem, index) => (
-                                <NavButton name={menuItem.name} icon={menuItem.icon} key={index} />
+                                <NavButton name={menuItem.name} key={index} />
                             ))}
                         </div>
                     </Tab>
