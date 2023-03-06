@@ -1,5 +1,34 @@
-import { FC, ReactNode, useState } from 'react';
+import { CSSProperties, FC, ReactNode, useState } from 'react';
 import './cardCarousel.css';
+
+import image1 from './assets/1.svg';
+import image2 from './assets/2.svg';
+import image3 from './assets/3.svg';
+import image4 from './assets/4.svg';
+
+const pageList = [
+    {
+        title: "Learning",
+        subtitle: "subtitle text",
+        image: image1,
+    },
+    {
+        title: "Business Plan",
+        subtitle: "subtitle text",
+        image: image2,
+    },
+    {
+        title: "Team spirit",
+        subtitle: "subtitle text",
+        image: image3,
+    },
+    {
+        title: "Success",
+        subtitle: "subtitle text",
+        image: image4,
+    }
+]
+
 
 type PaginationIndicatorsProps = {
     pageCount: number;
@@ -23,37 +52,40 @@ const Page = ({
     children: ReactNode;
     isActive: boolean;
 }) => {
-    return <div className={`carousel-page-item ${isActive ? 'active' : ''}`}>{ children }</div>
+    return <li className={`carousel-page-item ${isActive ? 'active' : ''}`}>{ children }</li>
 }
 
 export const CardCarousel = () => {
-    const PAGE_COUNT = 3;
+    const PAGE_COUNT = pageList.length;
     const [activePage, setActivePage] = useState<number>(0);
 
     const handleTabClicked = (pageCount: number) => {
         setActivePage(pageCount);
     }
 
+    const transformStyle:CSSProperties = {
+        transform: `translate3d(${activePage === 0 ? activePage : `-${activePage * 100}`}%, 0px, 0px)`
+    }
+
     return(
         <div className="card-carousel-wrapper">
-            <div className="carousel-page-wrapper">
+            <ul className="carousel-page-list" style={transformStyle}>
                 {
-                    Array.from({length: PAGE_COUNT}, (item, index) => (
-                        <Page isActive={activePage === index}>
+                    pageList.map((pageItem, index) => (
+                        <Page isActive={activePage === index} key={index}>
                             <div className="carousel-page-inner">
                                 <div className="page-image">
-                                    <img src={`./${index + 1}.svg`} />
+                                    <img src={pageItem.image} />
                                 </div>
                                 <div className="page-content">
-                                    {index === 0 && (<h1>Learning</h1>)}
-                                    {index === 1 && (<h1>Business Plan</h1>)}
-                                    {index === 2 && (<h1>Team spirit</h1>)}
+                                    <h1>{ pageItem.title }</h1>
+                                    <p>{ pageItem.subtitle }</p>
                                 </div>
                             </div>
                         </Page>
                     ))
                 }
-            </div>
+            </ul>
             <PaginationIndicators pageCount={PAGE_COUNT} activePage={activePage} onPageClicked={handleTabClicked} />
         </div>
     )
